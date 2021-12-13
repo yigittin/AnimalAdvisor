@@ -77,7 +77,7 @@ namespace AnimalAdvisor.Controllers
                 {
                     files[0].CopyTo(fileStream);
                 }
-                animal.AnimalPhoto = @"\images\animals" + fileName + extension;
+                animal.AnimalPhoto = @"\images\animals\" + fileName + extension;
 
 
                 _context.Add(animal);
