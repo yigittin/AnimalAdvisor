@@ -7,15 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AnimalAdvisor.Data;
 using AnimalAdvisor.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AnimalAdvisor.Controllers
 {
     public class SpeciesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public SpeciesController(ApplicationDbContext context)
+        public SpeciesController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
         {
+            _hostingEnvironment = hostingEnvironment;
             _context = context;
         }
 
@@ -57,10 +61,25 @@ namespace AnimalAdvisor.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CategoryId,SpeciesName")] Species species)
+        public async Task<IActionResult> Create([Bind("Id,CategoryId,SpeciesName,SpeciesPhoto")] Species species)
         {
             if (ModelState.IsValid)
             {
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
+
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(webRootPath, @"images\species");
+                var extension = Path.GetExtension(files[0].FileName);
+
+
+                using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                {
+                    files[0].CopyTo(fileStream);
+                }
+                species.SpeciesPhoto = @"\images\species" + fileName + extension;
+
+
                 _context.Add(species);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -91,7 +110,7 @@ namespace AnimalAdvisor.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CategoryId,SpeciesName")] Species species)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CategoryId,SpeciesName,SpeciesPhoto")] Species species)
         {
             if (id != species.Id)
             {

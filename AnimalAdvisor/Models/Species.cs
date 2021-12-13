@@ -15,6 +15,7 @@ namespace AnimalAdvisor.Models
 
         public string SpeciesName { get; set; }
 
+        public string SpeciesPhoto { get; set; }
 
     }
 }

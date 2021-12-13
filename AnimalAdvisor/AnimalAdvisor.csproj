@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\animals\46164b36-17d1-41d5-a0fc-f5fa3ce71404.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11" />
@@ -19,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\animals\" />
+    <Folder Include="wwwroot\images\species\" />
   </ItemGroup>
 
 </Project>
