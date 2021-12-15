@@ -14,7 +14,7 @@ namespace AnimalAdvisor.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+        public string animalName;
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
@@ -31,6 +31,24 @@ namespace AnimalAdvisor.Controllers
             return View();
         }
 
+        public IActionResult GetId()
+        {
+            animalName = Request.Form["animalId"];
+            return View(animalName);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,CategoryName")] Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(category);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(category);
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\AnimalsPage\" />
     <Folder Include="wwwroot\images\animals\" />
     <Folder Include="wwwroot\images\species\" />
   </ItemGroup>
