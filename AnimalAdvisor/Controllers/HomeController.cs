@@ -14,7 +14,7 @@ namespace AnimalAdvisor.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public string animalName;
+        public int animalId;
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
@@ -33,8 +33,10 @@ namespace AnimalAdvisor.Controllers
 
         public IActionResult GetId()
         {
-            animalName = Request.Form["animalId"];
-            return View(animalName);
+            //string animalIds;
+            //animalIds = Request.Form["animalId"];
+            //animalId = Int32.Parse(animalIds);
+            return View();
         }
 
         [HttpPost]

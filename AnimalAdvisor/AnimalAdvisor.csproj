@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\AnimalsPage\**" />
+    <Content Remove="Views\AnimalsPage\**" />
+    <EmbeddedResource Remove="Views\AnimalsPage\**" />
+    <None Remove="Views\AnimalsPage\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\images\animals\46164b36-17d1-41d5-a0fc-f5fa3ce71404.jpg" />
   </ItemGroup>
 
@@ -22,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\AnimalsPage\" />
     <Folder Include="wwwroot\images\animals\" />
     <Folder Include="wwwroot\images\species\" />
   </ItemGroup>

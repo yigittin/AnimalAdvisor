@@ -24,7 +24,7 @@
             <!-- Page Features-->
 
             <div class="row gx-lg-5">
-                <form action="GetId" method="get">
+                <form action="AnimalPage" method="post">
                 @foreach(var item in Model)
                     {
                     <div class="col-lg-6 col-xxl-4 mb-5">
@@ -33,6 +33,7 @@
                                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
                                 <h2 id="animalId" class="fs-4 fw-bold">@(item.SpeciesName)</h2>
                                 <img class="img-thumbnail" src="@item.SpeciesPhoto" alt="Alternate Text" />
+                                <input id="AnimalPage" type="text" asp-for="@(item.Id)" class="form-control invisible" value="@(item.Id)"/>
                                 <input type="submit" value="Go To List" class="btn btn-primary"/>
                             </div>
                         </div>
