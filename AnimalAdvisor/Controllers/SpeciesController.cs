@@ -69,7 +69,7 @@ namespace AnimalAdvisor.Controllers
                 var files = HttpContext.Request.Form.Files;
 
                 string fileName = Guid.NewGuid().ToString();
-                var uploads = Path.Combine(webRootPath, @"images\species");
+                var uploads = Path.Combine(webRootPath, @"images\species\");
                 var extension = Path.GetExtension(files[0].FileName);
 
 

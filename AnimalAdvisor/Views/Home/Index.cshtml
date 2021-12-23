@@ -23,23 +23,24 @@
         <div class="container px-lg-5">
             <!-- Page Features-->
 
-            <div class="row gx-lg-5">
-                <form action="AnimalPage" method="post">
+            <div class="row gx-xl-6 h-100 d-lg-flex card-group" >
                 @foreach(var item in Model)
                     {
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
+                <form asp-action="Index" method="post" asp-controller="AnimalPage">
+                    <div class="col-sm-4 mb-5 d-inline-block">
+                        <div class="card bg-light border-0  " >
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
                                 <h2 id="animalId" class="fs-4 fw-bold">@(item.SpeciesName)</h2>
-                                <img class="img-thumbnail" src="@item.SpeciesPhoto" alt="Alternate Text" />
-                                <input id="AnimalPage" type="text" asp-for="@(item.Id)" class="form-control invisible" value="@(item.Id)"/>
-                                <input type="submit" value="Go To List" class="btn btn-primary"/>
+                                <img class="card-img-top" style="height:20rem" src="@item.SpeciesPhoto" alt="Alternate Text" />
+                                <input id="AnimalPage" type="text" asp-route-id="" asp-for="@(item.Id)" class="form-control invisible" value="@(item.Id)" />
+                                
+                                <a class="btn btn-primary" asp-action="Privacy" asp-route-id="@item.Id">Go To List</a>
                             </div>
                         </div>
                     </div>
-                }
                 </form>
+                }
             </div>
         </div>
     </section>

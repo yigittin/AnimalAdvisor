@@ -9,26 +9,41 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace AnimalAdvisor.Controllers
 {
+
+   
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public int animalId;
+        public int _animalId;
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
         }
-
+        public int getAnimalId()
+        {
+            return _animalId;
+        }
         public IActionResult Index()
         {
             var db = _context.Species.Include(f => f.Category);
             return View(db.ToList());
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Index(int animalId)
         {
-            return View();
+            var db = _context.Animals.Where(f=>f.Id==animalId).Include(f => f.Species);
+            return View(db.ToList());
+        }
+
+        public IActionResult Privacy(string id)
+        {
+            int animalId = Int32.Parse(id);
+            var db = _context.Animals.Where(f => f.SpeciesId == animalId).Include(f => f.Species);
+            return View(db.ToList());           
         }
 
         public IActionResult GetId()
