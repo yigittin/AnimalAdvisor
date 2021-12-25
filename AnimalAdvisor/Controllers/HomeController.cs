@@ -39,7 +39,7 @@ namespace AnimalAdvisor.Controllers
             return View(db.ToList());
         }
 
-        public IActionResult Privacy(string id)
+        public IActionResult Animals(string id)
         {
             int animalId = Int32.Parse(id);
             var db = _context.Animals.Where(f => f.SpeciesId == animalId).Include(f => f.Species);

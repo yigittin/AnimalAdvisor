@@ -24,9 +24,9 @@
             <!-- Page Features-->
 
             <div class="row gx-xl-6 h-100 d-lg-flex card-group" >
+                <form asp-action="Index" method="post" asp-controller="AnimalPage">
                 @foreach(var item in Model)
                     {
-                <form asp-action="Index" method="post" asp-controller="AnimalPage">
                     <div class="col-sm-4 mb-5 d-inline-block">
                         <div class="card bg-light border-0  " >
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
@@ -35,12 +35,12 @@
                                 <img class="card-img-top" style="height:20rem" src="@item.SpeciesPhoto" alt="Alternate Text" />
                                 <input id="AnimalPage" type="text" asp-route-id="" asp-for="@(item.Id)" class="form-control invisible" value="@(item.Id)" />
                                 
-                                <a class="btn btn-primary" asp-action="Privacy" asp-route-id="@item.Id">Go To List</a>
+                                <a class="btn btn-primary" asp-action="Animals" asp-route-id="@item.Id">Go To List</a>
                             </div>
                         </div>
                     </div>
-                </form>
                 }
+                </form>
             </div>
         </div>
     </section>
